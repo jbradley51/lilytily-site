@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shop — LilyTily</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a href="index.html" class="logo"><img src="assets/logo.svg" alt="LilyTily"></a>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="shop.html">Shop</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="size.html">Size Guide</a></li>
+      <li><a href="care.html">Care Guide</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </div>
+</header>
+
+<section class="hero" style="padding:90px 24px 60px;">
+  <div class="wrap" style="text-align:center;">
+    <span class="hero-eyebrow">The Collection</span>
+    <h1 class="reveal" style="font-size:40px;">Pieces made to be worn together</h1>
+    <p class="reveal" style="margin:0 auto;">Currently available on Amazon — direct checkout on lilytily.com is coming soon.</p>
+  </div>
+</section>
+
+<section style="padding-top:20px;">
+  <div class="wrap">
+    <div class="product-feature reveal">
+      <div>
+        <div class="photo" id="mainPhoto">
+          <img id="mainPhotoImg" src="assets/products/daisy-gold-lifestyle.jpg" alt="The Daisy Set necklace, gold finish">
+        </div>
+        <div class="product-gallery">
+          <div class="photo photo-alt"><img id="closeupImg" src="assets/products/daisy-gold-closeup.jpg" alt="The Daisy Set pendant close-up, gold finish"></div>
+          <div class="photo"><img id="packagingImg" src="assets/products/daisy-gold-packaging.jpg" alt="The Daisy Set in LilyTily packaging, gold finish"></div>
+        </div>
+      </div>
+      <div>
+        <span class="eyebrow">Our First Set</span>
+        <h3 style="font-size:30px;">The Daisy Set</h3>
+        <p>A layered chain necklace finished with our signature daisy pendant and a single crystal drop. Designed to be worn solo by a little one, or layered as a matching set with mom. Hypoallergenic, tarnish-resistant stainless steel.</p>
+
+        <div class="swatches">
+          <span class="swatch-label">Finish</span>
+          <button class="swatch swatch-gold active" id="swatchGold" aria-label="Gold finish" onclick="setFinish('gold')"></button>
+          <button class="swatch swatch-silver" id="swatchSilver" aria-label="Silver finish" onclick="setFinish('silver')"></button>
+        </div>
+
+        <div class="price">$—.—</div>
+        <a href="https://www.amazon.com/REPLACE-WITH-YOUR-LISTING-LINK" class="btn">Shop on Amazon</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="pull-quote reveal">
+  <blockquote>"She'll always be my little one. Now she gets to wear it."</blockquote>
+  <cite>— A LilyTily Mom</cite>
+</div>
+
+<footer>
+  <div class="logo"><img src="assets/logo.svg" alt="LilyTily"></div>
+  <p class="tagline">Matching jewelry for the bond that started it all.</p>
+  <div class="social">
+    <a href="#">Instagram</a>
+    <a href="#">TikTok</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <p class="copyright">
+    <a href="privacy.html" style="color:#c9c2c8;">Privacy Policy</a> &middot;
+    <a href="terms.html" style="color:#c9c2c8;">Terms &amp; Conditions</a>
+  </p>
+  <p class="copyright">&copy; 2026 LilyTily. All rights reserved.</p>
+</footer>
+
+<script src="assets/reveal.js"></script>
+<script>
+  function setFinish(finish) {
+    document.getElementById('mainPhotoImg').src = 'assets/products/daisy-' + finish + '-lifestyle.jpg';
+    document.getElementById('closeupImg').src = 'assets/products/daisy-' + finish + '-closeup.jpg';
+    document.getElementById('packagingImg').src = 'assets/products/daisy-' + finish + '-packaging.jpg';
+    document.getElementById('swatchGold').classList.toggle('active', finish === 'gold');
+    document.getElementById('swatchSilver').classList.toggle('active', finish === 'silver');
+  }
+</script>
+</body>
+</html>
