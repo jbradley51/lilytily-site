@@ -34,7 +34,11 @@
 
 <section style="padding-top:0;">
   <div class="wrap">
-    <form class="contact-form reveal" action="mailto:support@lilytily.com" method="post" enctype="text/plain">
+
+    <form class="contact-form reveal" id="contactForm" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+      <input type="hidden" name="form-name" value="contact">
+      <input type="hidden" name="bot-field" style="display:none;">
+
       <label for="name">Name</label>
       <input type="text" id="name" name="name" required>
 
@@ -44,8 +48,15 @@
       <label for="message">Message</label>
       <textarea id="message" name="message" rows="5" required></textarea>
 
-      <button type="submit" class="btn" style="border:none; cursor:pointer;">Send Message</button>
+      <button type="submit" class="btn" id="submitBtn" style="border:none; cursor:pointer;">Send Message</button>
     </form>
+
+    <div id="formConfirmation" style="display:none; text-align:center; padding:48px 24px;">
+      <div style="font-size:40px; margin-bottom:16px; color:var(--rose-gold);">&#10003;</div>
+      <h3 style="margin-bottom:12px;">Message received!</h3>
+      <p style="color:var(--muted); max-width:400px; margin:0 auto;">Thank you for reaching out. We appreciate you taking the time to connect with us and will get back to you within 1–2 business days.</p>
+    </div>
+
     <p style="text-align:center; margin-top:24px; color:var(--muted); font-size:14px;">Or email us directly at <a href="mailto:support@lilytily.com">support@lilytily.com</a></p>
     <p style="text-align:center; margin-top:12px; color:var(--muted); font-size:14px;">
       LilyTily &nbsp;&middot;&nbsp; PO Box 6538 &nbsp;&middot;&nbsp; Laguna Niguel, CA 92607
@@ -71,5 +82,31 @@
 
 <script src="assets/reveal.js"></script>
 <script src="assets/nav.js"></script>
+<script>
+  var form = document.getElementById('contactForm');
+  var confirmation = document.getElementById('formConfirmation');
+  var submitBtn = document.getElementById('submitBtn');
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    submitBtn.textContent = 'Sending…';
+    submitBtn.disabled = true;
+
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(new FormData(form)).toString()
+    })
+    .then(function() {
+      form.style.display = 'none';
+      confirmation.style.display = 'block';
+    })
+    .catch(function() {
+      submitBtn.textContent = 'Send Message';
+      submitBtn.disabled = false;
+      alert('Something went wrong. Please email us directly at support@lilytily.com');
+    });
+  });
+</script>
 </body>
 </html>
